@@ -14,6 +14,6 @@
 
 1. Networking
 
-1. [Software](software)
+1. Software
 
 1. System administration
