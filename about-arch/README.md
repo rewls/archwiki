@@ -1,0 +1,13 @@
+# About Arch
+
+## Categories
+
+1. Arch community
+
+1. [ArchWiki](archiwiki)
+
+1. Installation process
+
+1. Live Arch systems
+
+1. Teams
