@@ -24,7 +24,7 @@
 
 1. Input
 
-1. Kernel
+1. [Kernel](kernel)
 
 1. Linux console
 

@@ -6,4 +6,4 @@
 
 ## Pages
 
-- [Docker](../security/sandboxing/docker.md)
+- [Docker](docker.md)
