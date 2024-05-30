@@ -6,7 +6,7 @@
 
 1. [ArchWiki](archiwiki)
 
-1. Installation process
+1. [Installation process](installation-process)
 
 1. Live Arch systems
 

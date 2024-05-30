@@ -44,6 +44,10 @@
 
 1. Synchronization
 
-1. System recovery
+1. [System recovery](system-recovery)
 
 1. [Virtualization](virtualization)
+
+## Pages
+
+- [General troubleshooting](general-troubleshooting.md)
