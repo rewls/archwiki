@@ -146,7 +146,7 @@ $ make
 
     ```shell
     $ make modules
-     ``
+    ```
 
 - Then install the modules.
 
@@ -206,17 +206,18 @@ $ make
 
 - Second, edit the file and amend for the custom kernel.
 
-- Note (again) that the ALL_kver= parameter also matches the name of the custom kernel specified when copying the bzImage:
+- Note (again) that the `ALL_kver=` parameter also matches the name of the custom kernel specified when copying the bzImage:
 
     - `/etc/mkinitcpio.d/linux*A**B*.preset`
 
-    ...
-    ALL_kver="/boot/vmlinuz-linux*A**B*"
-    ...
-    default_image="/boot/initramfs-linux*A**B*.img"
-    ...
-    fallback_image="/boot/initramfs-linux*A**B*-fallback.img"
-    ```
+        ```
+        ...
+        ALL_kver="/boot/vmlinuz-linux*A**B*"
+        ...
+        default_image="/boot/initramfs-linux*A**B*.img"
+        ...
+        fallback_image="/boot/initramfs-linux*A**B*-fallback.img"
+        ```
 
 - Finally, generate the initramfs images for the custom kernel in the same way as for an official kernel:
 
@@ -243,3 +244,50 @@ $ make
         - Specifies the name of the initramfs file to generate in the `/boot` directory.
 
         - Again, using the naming convention mentioned above is recommended.
+
+### 4.4 Copy System.map
+
+- The `System.map` file is not required for booting Linux.
+
+- It is a type of "phone directory" list of functions in a particular build of a kernel.
+
+- The `System.map` contains a list of kernel symbols and their corresponding addresses.
+
+- This "symbol-name to address mapping" is used by:
+
+    - Some processes like klogd, ksymoops, etc.
+
+    - By OOPS handler when information has to be dumped to the screen during a kernel crash (i.e info like in which function it has crashed).
+
+> ##### Tip
+>
+> - EFI system partitions are formatted using FAT32, which does not support symlinks.
+
+- If your `/boot` is on a filesystem which supports symlinks, copy `System.map` to `/boot`, appending your kernel's name to the destination file.
+
+- Then create a symlink from `/boot/System.map` to point to `/boot/System.map-linuxAB`:
+
+```shell
+# cp System.map /boot/System.map-linux*A**B*
+# ln -sf /boot/System.map-linux*A**B* /boot/System.map
+```
+
+- After completing all steps above, you should have the following 3 files and 1 soft symlink in your `/boot` directory along with any other previously existing files:
+
+- Kernel: `vmlinuz-linux*A**B*`
+
+- Initramfs: `initramfs-linux*A**B*.img`
+
+- System Map: `System.map-linux*A**B*`
+
+- System Map kernel symlink: `System.map` (which symlinks to `System.map-linux*A**B*`)
+
+## 5 Bootloader configuration
+
+- Add an entry for your new kernel in your bootloader's configuration file.
+
+- See Arch boot process#Feature comparison for possible boot loaders, their wiki articles and other information.
+
+> ##### Tip
+>
+> - Kernel sources include a script to automate the process for LILO: it can be safely ignored if you are using an other bootloader.
