@@ -4,7 +4,7 @@
 
 1. Backup
 
-1. Boot process
+1. [Boot process](boot-process)
 
 1. Command-line
 
