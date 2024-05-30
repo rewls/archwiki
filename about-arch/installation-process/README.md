@@ -3,3 +3,5 @@
 ## Pages
 
 - [General troubleshooting](/system-administration/general-troubleshooting.md)
+
+- [Installation guide](installation-guide.md)
