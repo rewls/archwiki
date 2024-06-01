@@ -20,7 +20,7 @@
 
 ### 1.1 Acquire an installation image
 
-- Vsit the Download page and, depending on how you want to boot, acquire the ISO file or a netboot image, and the respective GnuPG signature.
+- Visit the Download page and, depending on how you want to boot, acquire the ISO file or a netboot image, and the respective GnuPG signature.
 
 ### 1.2 Verify signature
 
