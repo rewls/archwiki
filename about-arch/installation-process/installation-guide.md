@@ -70,7 +70,7 @@
 
 2. When the installation medium's boot loade menu appears,
 
-	- IF you used the ISO, select *Arch Linux install medium* and press `Enter` to enter the installation environment.
+	- If you used the ISO, select *Arch Linux install medium* and press `Enter` to enter the installation environment.
 
 	> ##### Tip
 	>

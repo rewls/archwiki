@@ -2,6 +2,8 @@
 
 - This page discusses various multi-platform methods on how to create an Arch Linux Installer USB drive for booting in BIOS and UEFI systems.
 
+- If you would like to use your bootable Arch Linux USB stick as a rescur USB, see chroot.
+
 - Before following any of these steps, download the ISO from https://archlinux.org/download/ and verify its integrity.
 
 ## 1 Using the ISO as is (BIOS and UEFI)

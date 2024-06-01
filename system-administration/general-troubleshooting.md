@@ -57,6 +57,10 @@
 
 - If that fails, exit the *chroot*, and try:
 
+	```shell
+	[ISO] # pacman -Syu --sysroot /mnt
+	```
+
 - If that fails, try:
 
 	```shell
