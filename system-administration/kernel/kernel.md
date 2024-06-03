@@ -43,3 +43,9 @@
 > - The `config` file of your currently running kernel may also be available in your file system at `/proc/config.gz` if the `CONFIG_IKCONFIG_PROC` kernel option is enabled.
 
 - Some of the listed packages may also be available as binary packages via Unofficial user repositories.
+
+### 2.1 kernel.org kernels
+
+- Longterm 5.10 -- Long-term support (LTS) Linux 5.10 kernel an modules.
+
+    - https://www.kernel.org/ || linux-lts510<sup>AUR</sup>

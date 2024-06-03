@@ -177,7 +177,7 @@ $ make
 - Provided the name is prefixed with `vmlinuz-`, you may name the kernel as you wish.
 
 ```shell
-# cp -v arch/x86/boot/bzImage /boot/vmlinuz-linuxAB
+# cp -v arch/x86/boot/bzImage /boot/vmlinuz-linux*A**B*
 ```
 
 ### 4.3 Make initial RAM disk

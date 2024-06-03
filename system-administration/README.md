@@ -51,3 +51,5 @@
 ## Pages
 
 - [General troubleshooting](general-troubleshooting.md)
+
+- [Systemd/Journal](systemd-journal.md)
