@@ -50,6 +50,8 @@
 
 ## Pages
 
+- [Environment variables](environment-variables.md)
+
 - [General troubleshooting](general-troubleshooting.md)
 
 - [Systemd/Journal](systemd-journal.md)
