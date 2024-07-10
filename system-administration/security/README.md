@@ -20,7 +20,7 @@
 
 1. [Sandboxing](sandboxing)
 
-1. Secure Shell
+1. [Secure Shell](secure-shell)
 
 1. Security testing
 

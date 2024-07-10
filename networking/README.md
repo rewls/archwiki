@@ -2,38 +2,38 @@
 
 ## Categories
 
-- Directory services
+1. Directory services
 
-- Distributed computing
+1. Distributed computing
 
-- Email
+1. Email
 
-- Firewalls
+1. Firewalls
 
-- Instant messaging
+1. Instant messaging
 
-- Modems
+1. Modems
 
-- Network configuration
+1. Network configuration
 
-- Network monitoring
+1. Network monitoring
 
-- [Network sharing](network-sharing)
+1. [Network sharing](network-sharing)
 
-- Peer-to-peer
+1. Peer-to-peer
 
-- Protocols
+1. [Protocols](protocols)
 
-- Servers
+1. Servers
 
-- Streaming
+1. Streaming
 
-- Telephony
+1. Telephony
 
-- Virtual Private Network
+1. Virtual Private Network
 
-- Voice over IP
+1. Voice over IP
 
-- Web
+1. Web
 
-- Wireless networking
+1. Wireless networking
