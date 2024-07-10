@@ -70,7 +70,7 @@
 
         - Unless you are restricting the scope of the variables to terminals you open, you are looking to modify the login shell.
 
-    - systemd user environment variables are read from ``/.config/environment.d/*.conf`.
+    - systemd user environment variables are read from `/.config/environment.d/*.conf`.
 
 - To update the variable, re-login or source the file.
 

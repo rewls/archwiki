@@ -2,7 +2,7 @@
 
 ## Categories
 
-1. Help
+1. [Help](help)
 
 ## Pages
 
