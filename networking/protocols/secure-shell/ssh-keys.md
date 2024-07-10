@@ -56,7 +56,6 @@ $ ssh-keygen
 
     ```sh
     $ ssh-keygen -C "$(whoami)@$(uname -n)-$(date -I)"
-    $$$
     ```
 
     - will add a comment saying which user created the key on which machinee and when.
@@ -111,7 +110,39 @@ $ ssh-keygen -f ~/.ssh/id_rsa -p
        IdentityFile ~/.ssh/id_ed25519_IDENTITY2
     ```
 
-- See `ssh_config(5)` for full description of these options.
+- See `ssh-config(5)` for full description of these options.
+
+## 3 Copying the public key to the remote server
+
+- Once you have generated a key pair, you will need to copy the public key to the remote server so that it will use SSH key authentication.
+
+- The public key file shares the same name as the private key except that it is appended with a `.pub` extention.
+
+- Note that the private key is not share and remains on the local machine.
+
+### 3.1 Simple method
+
+> Note: This method might fail if the remote server uses a non-`sh` shell such as `tcsh` as default and uses OpenSSH older than 6.6.1p1. 
+
+- If your key file is `~/.ssh/id_rsa.pub` you can simply enter the following command.
+
+```sh
+$ ssh-copy-id remote-server.org
+```
+
+- If your username differs on remote machine, be sure to prepend the username followed by `@` to the server name.
+
+```sh
+$ ssh-copy-id username@remote-server.org
+```
+
+- If your public key filename is anything other than the default of `~/.ssh/id_rsa.pub` your will get an error.
+
+- In this case, you must explicitly provide the location of the public key.
+
+```sh
+$ ssh-copy-id -i ~/.ssh/id_ed25519.pub username@remote-server.org
+```
 
 ## 4 SSH agents
 
