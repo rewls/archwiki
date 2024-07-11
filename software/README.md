@@ -1,6 +1,6 @@
 # Software
 
-## Subcategories
+## Categories
 
 - Applications
 
@@ -14,4 +14,4 @@
 
 - Software comparisons
 
-- Software projects
+- [Software projects](software-projects)

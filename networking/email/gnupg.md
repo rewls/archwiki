@@ -1,0 +1,1 @@
+../../system-administration/security/cryptography/encryption/gnupg.md
