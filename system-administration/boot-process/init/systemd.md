@@ -168,7 +168,7 @@
 
     - `/usr/lib/systemd/system/`: units provided by installed packages
 
-    - `/etc/systemx/system/`: units installed by the system administrator
+    - `/etc/systemd/system/`: units installed by the system administrator
 
 > ##### Note:
 >
@@ -233,3 +233,17 @@
         - Setting `RemainAfterExit=yes` is appropriate for the units which change the system state (e.g., mount some partition).
 
 - See the `systemd.service(5) § OPTIONS` man page for a more detailed explanation of the `Type` values.
+
+## 3 Targets
+
+- *systemd* uses *targets* to group units together via dependencies and as standardized synchronization points.
+
+- Each *target* is named and is intended to serve a specific purpose with the possibility of having multiple ones active at the same time.
+
+- Some *targets* are implemented by inheriting all of the services of another *target* and adding additional services to it.
+
+### 3.1 Get current targets
+
+```sh
+$ systemctl list-units --type=target
+```
