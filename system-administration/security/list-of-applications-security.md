@@ -1,1 +1,1 @@
-list-of-applications-security.md
+../../software/applications/list-of-applications-security.md
