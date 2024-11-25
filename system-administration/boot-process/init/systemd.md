@@ -44,7 +44,7 @@
 
     - Mount points will automatically be translated into the appropriate *.mount* unit.
 
-        - For example, `netctl` and `netctl.serviced are equivalent.
+        - For example, `netctl` and `netctl.service` are equivalent.
 
     - Similar to mount points, devices are automatically translated into the appropriate *.devcie* unit, therefore specifying `/dev/sda2` is equivalent to `dev-sda2.device`.
 

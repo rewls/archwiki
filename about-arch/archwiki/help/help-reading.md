@@ -140,7 +140,9 @@
 
 - After creating a file, if it is meant to be run as a script (whether manually or called by another program), it needs to be set as executable, for example with:
 
-    <pre>$ chmod +x <i>script</i></pre>
+    ```sh
+    $ chmod +x *script*
+    ```
 
 - See [**chmod**]().
 
