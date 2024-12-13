@@ -6,6 +6,6 @@
 
 - Bootsplash
 
-- Init
+- [Init](init)
 
 - Initramfs

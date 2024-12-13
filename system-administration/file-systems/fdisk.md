@@ -10,9 +10,9 @@
 
 > ##### Note
 >
-> - *fdisk* supports GPT since [**`util-linux`**] 2.23.
+> - *fdisk* supports GPT since [**`util-linux`**]() 2.23.
 >
-> - Alternatively, [**`gptfdisk`**] may be used; see [**gdisk**] for more information.
+> - Alternatively, [**`gptfdisk`**]() may be used; see [**gdisk**]() for more information.
 
 > ##### Tip
 >

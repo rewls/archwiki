@@ -90,7 +90,7 @@ $ cd *package_name*
 
     - `-i`/`--install` installs the package if it is built successfully.
 
-    - `-r`/`--rmdeps` removes built-time dependencies after the build, sas they are no longer needed/`.
+    - `-r`/`--rmdeps` removes built-time dependencies after the build, as they are no longer needed.
 
     - `-c`/`--clean` cleans up temporary build files after the build, so many are no longer needed.
 

@@ -47,11 +47,3 @@
 1. [System recovery](system-recovery)
 
 1. [Virtualization](virtualization)
-
-## Pages
-
-- [Environment variables](environment-variables.md)
-
-- [General troubleshooting](general-troubleshooting.md)
-
-- [Systemd/Journal](systemd-journal.md)
