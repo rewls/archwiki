@@ -104,7 +104,33 @@
     $ gpg --import *public-key*.asc
     ```
 
-- If you wish to import a key ID to install a specific Arch Linux package, see pacman/Package signing#Managing the keyring and Makepkg#Signature checking.
+- Alternatively, [**use a keyserver**](#35-use-a-keyserver) to find a public key.
+
+<br>
+
+- If you wish to import a key ID to install a specific Arch Linux package, see [**pacman/Package signing#Managing the keyring**]() and [**Makepkg#Signature checking**](https://github.com/rewls/archwiki/blob/main/about-arch/makepkg.md#13-signature-checking).
+
+### 3.5 Use a keyserver
+
+#### 3.5.2 Searching and receiving keys
+
+- To find out details of a key on the keyserver, without importing it, do:
+
+    ```sh
+    $ gpg --search-keys user-id
+    ```
+
+- To import a key from a key server:
+
+    ```sh
+    $ gpg --receive-keys key-id
+    ```
+
+- To refresh/update the keychain with the latest version from a key server:
+
+    ```sh
+    $ gpg --refresh-keys
+    ```
 
 ## 4 Key maintenance
 

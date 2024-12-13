@@ -24,6 +24,6 @@
 
 - If a needed public key for a package is missing, the [**PKGBUILD**]() will most likely contain a [**validpgpkeys**]() entry with the required key IDs.
 
-- [**Import**](https://wiki.archlinux.org/title/GnuPG#Import_a_public_key) it manually, or find it on a keyserver and import it from there.
+- [**Import**](https://github.com/rewls/archwiki/blob/main/system-administration/security/cryptography/encryption/gnupg.md#34-import-a-public-key) it manually, or find it [**on a keyserver**](https://github.com/rewls/archwiki/blob/main/system-administration/security/cryptography/encryption/gnupg.md#35-use-a-keyserver) and import it from there.
 
 - To temporarily disable signature checking, run makepkg with the `--skippgpcheck` option.
