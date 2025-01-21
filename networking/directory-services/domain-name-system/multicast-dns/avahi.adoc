@@ -1,0 +1,46 @@
+= Avahi
+
+
+* From Wikipedia:Avahi (software):
++
+[quote, Wikipedia:Avahi (software)]
+____
+* Avahi is a free Zero-configuration networking (zeroconf) implementation,
+  including a system for multicast DNS/DNS-SD service discovery.
+* It allows programs to publish and discover services and hosts running on a
+  local network with no specific configuration.
+* For example you can plug into a network and instantly find printers to print
+  to, files to look at and people to talk to.
+* It is licensed under the GNU Lesser General Public License (LGPL).
+____
+
+== 1 Installation
+
+* Install the `avahi` package and enable the `avahi-daemon.service` or use socket activation.
+
+[NOTE]
+====
+* systemd-resolved has a built-in mDNS service, make sure to disable
+  systemd-resolved's multicast DNS resolver/responder (refer to
+  `resolved.conf(5)`) or disable `systemd-resolved.service` entirely before
+  using Avahi.
+====
+
+== 2 Using Avahi
+
+=== 2.1 Hostname resolution
+
+* Avahi provides local hostname resolution using a "_hostname_.local" naming
+  scheme.
+* To enable it, install the `nss-mdns` package and start/enable
+  `avahi-daemon.service`.
+
+'''
+
+* Then, edit the file `/etc/nsswitch.conf` and change the `hosts` line to
+  include `mdns_minimal [NOTFOUND=return]` before `resolve` and `dns`:
++
+[subs="quotes"]
+....
+hosts: mymachines *mdns_minimal [NOTFOUND=return]* resolve [!UNAVAIL=return] files myhostname dns
+....
