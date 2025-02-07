@@ -1,0 +1,319 @@
+= pacman
+:toc: left
+:source-highlighter: rouge
+
+* The pacman package manager is one of the major distinguishing features of
+  Arch Linux.
+* It combines a simple binary package format with an easy-to-use Arch build
+  system.
+* The goal of _pacman_ is to make it possible to easily manage packages, whether
+  they are from the official repositories or the user's own builds.
+
+'''
+
+* _Pacman_ keeps the system up-to-date by synchronizing package lists with the
+  master server.
+* This server/client model also allows the user to download/install packages
+  with a simple command, complete with all required dependencies.
+
+'''
+
+* _Pacman_ is written in the C programming language and uses the `bsdtar(1)`
+  tar format for packaging.
+
+== 1 Usage
+
+* What follows is just a small sample of the operations that _pacman_ can
+  perform.
+* To read more examples, refer to `pacman(8)`.
+
+=== 1.1 Installing packages
+
+* A package is an archive containing:
+** all of the (compiled) files of an application
+** metadata about the application, such as application name, version,
+   dependencies, etc.
+** installation files and directives for _pacman_
+
+* Arch's package manager _pacman_ can install, update, and remove those
+  packages.
+* Using packages instead of compiling and installing programs yourself has
+  various benefits:
+easily updatable::
+_pacman_ will update existing packages as soon as updates are available
+dependency checks::
+_pacman_ handles dependencies for you, you only need to specify the program and
+pacman installs it together with every other program it needs
+clean removal::
+_pacman_ has a list of every file in a package; this way, no files are
+unintentionally left behind when you decide to remove a package.
+
+[WARNING]
+====
+* When installing packages in Arch, avoid refreshing the package list without
+  upgrading the system (for example, when a package is no longer found in the
+  official repositories).
+* In practice, do not run `pacman -Sy _package_name_` instead of `pacman -Syu
+  _package_name_`, as this could lead to dependency issues.
+
+=== 1.1.1 Installing specific packages
+
+* To install a single package or list of packages, including dependencies,
+  issue the following command:
++
+[source,sh,subs=quotes]
+# pacman -S _package_name1_ _package_name2_ ...
+
+* To install a list of packages with regex:
++
+[source,sh,subs=quotes]
+# pacman -S $(pacman -Ssq _package_regex_)
+
+* Sometimes there are multiple versions of a package in different repositories
+  (e.g. _extra_ and _testing_).
+* To install the version from the extra repository in this example, the
+  repository needs to be defined in front of the package name:
++
+[source,sh,subs=quotes]
+# pacman -S extra/_package_name_
+
+* To install a number of packages sharing similar patterns in their names, one
+  can use curly brace expansion.
+* For example:
++
+[source,sh]
+# pacman -S plasma-{desktop,mediacenter,nm}
+
+* This can be expanded to however many levels needed:
++
+[source,sh]
+# pacman -S plasma-{workspace{,-wallpapers},pa}
+
+=== 1.1.2 Installing package groups
+
+* Some packages belong to a group of packages that can all be installed
+  simultaneously.
+* For example, issuing the command:
++
+[source,sh]
+# pacman -S gnome
++
+will prompt you to select the packages from the gnome group that you wish to
+install.
+
+'''
+
+* Sometimes a package group will contain a large amount of packages, and there
+  may be only a few that you do or do not want to install.
+* Instead of having to enter all the numbers except the ones you do not want,
+  it is sometimes more convenient to select or exclude packages or ranges of
+  packages with the following syntax:
++
+....
+Enter a selection (default=all): 1-10 15
+....
++
+which will select packages 1 through 10 and 15 for installation, or:
++
+....
+Enter a selection (default=all): ^5-8 ^2
+....
++
+which will select all packages except 5 through 8 and 2 for installation.
+
+'''
+
+* To see what packages belong to the gnome group, run:
++
+[source,sh]
+$ pacman -Sg gnome
+
+* Also visit https://archlinux.org/groups/ to see what package groups are
+  available.
+
+[NOTE]
+====
+* If a package in the list is already installed on the system, it will be
+  reinstalled even if it is already up-to-date.
+* This behavior can be overridden with the `--needed` option.
+====
+
+=== 1.2 Removing packages
+
+* To remove a single package, leaving all of its dependencies installed:
++
+[source,sh,subs=quotes]
+# pacman -R _package_name_
+
+* To remove a package and its dependencies which are not required by any other
+  installed package:
++
+[source,sh,subs=quotes]
+# pacman -Rs _package_name_
+
+[WARNING]
+====
+* When removing a group, such as gnome, this ignores the install reason of the
+  packages in the group, because it acts as though each package in the group is
+  listed separately.
+* Install reason of dependencies is still respected.
+====
+
+* Pacman saves important configuration files when removing certain applications
+  and names them with the extension: `.pacsave`.
+* To prevent the creation of these backup files use the `-n` option:
++
+[source,sh,subs=quotes]
+# pacman -Rn _package_name_
+
+[NOTE]
+====
+* Pacman will not remove configurations that the application itself creates
+  (for example "dotfiles" in the home directory).
+====
+
+=== 1.3 Upgrading packages
+
+[WARNING]
+====
+* Users are expected to follow the guidance in the System maintenance#Upgrading
+  the system section to upgrade their systems regularly and not blindly run the
+  following command.
+* Arch only supports full system upgrades.
+* See System maintenance#Partial upgrades are unsupported and #Installing
+  packages for details.
+====
+
+* _Pacman_ can update all packages on the system with just one command.
+* This could take quite a while depending on how up-to-date the system is.
+* The following command synchronizes the repository databases and updates the
+  system's packages, excluding "local" packages that are not in the configured
+  repositories:
++
+[source,sh]
+# pacman -Syu
+
+=== 1.4 Querying package databases
+
+* _Pacman_ queries the local package database with the `-Q` flag, the sync
+  database with the `-S` flag and the files database with the `-F` flag.
+* See `pacman -Q --help`, `pacman -S --help` and `pacman -F --help` for the
+  respective suboptions of each flag.
+
+'''
+
+* _Pacman_ can search for packages in the database, searching both in packages'
+  names and descriptions:
++
+[source,sh,subs=quotes]
+$ pacman -Ss _string1_ _string2_ ...
+
+* Sometimes, `-s`'s builtin ERE (Extended Regular Expressions) can cause a lot
+  of unwanted results, so it has to be limited to match the package name only;
+  not the description nor any other field:
++
+[source,sh]
+$ pacman -Ss '^vim-'
+
+* To search for already installed packages:
++
+[source,sh,subs=quotes]
+$ pacman -Qs _string1_ _string2_ ...
+
+* To search for package file names in remote packages:
++
+[source,sh,subs=quotes]
+$ pacman -F _string1_ _string2_ ...
+
+* To display extensive information about a given package (e.g. its
+  dependencies):
++
+[source,sh,subs=quotes]
+$ pacman -Si _package_name_
+
+* For locally installed packages:
++
+[source,sh,subs=quotes]
+$ pacman -Qi _package_name_
+
+* Passing two `-i` flags will also display the list of backup files and their
+  modification states:
++
+[source,sh,subs=quotes]
+$ pacman -Qii _package_name_
+
+* To retrieve a list of the files installed by a package:
++
+[source,sh,subs=quotes]
+$ pacman -Ql _package_name_
+
+* To retrieve a list of the files installed by a remote package:
++
+[source,sh,subs=quotes]
+$ pacman -Fl _package_name_
+
+* To verify the presence of the files installed by a package:
++
+[source,sh,subs=quotes]
+$ pacman -Qk _package_name_
+
+* Passing the `k` flag twice will perform a more thorough check.
+
+'''
+
+* To query the database to know which package a file in the file system belongs
+  to:
++
+[source,sh,subs=quotes]
+$ pacman -Qo _/path/to/file_name_
+
+* To query the database to know which remote package a file belongs to:
++
+[source,sh,subs=quotes]
+$ pacman -F _/path/to/file_name_
+
+* To list all packages no longer required as dependencies (orphans):
++
+[source,sh]
+$ pacman -Qdt
+
+* To list all packages explicitly installed and not required as dependencies:
++
+[source,sh]
+$ pacman -Qet
+
+* See pacman/Tips and tricks for more examples.
+
+==== 1.4.1 Pactree
+
+[NOTE]
+====
+* `pactree(8)` is not part of the `pacman` package anymore.
+* Instead it can be found in `pacman-contrib`.
+====
+
+* To view the dependency tree of a package:
++
+[source,sh]
+$ pactree package_name
+
+* To view the dependant tree of a package, pass the reverse flag `-r` to _pactree_
+
+== 2 Configuration
+
+* _Pacman_ settings are located in `/etc/pacman.conf`: this is the place where
+  the user configures the program to work in the desired manner.
+* In-depth information about the configuration file can be found in
+  `pacman.conf(5)`.
+
+=== 2.1 General options
+
+* General options are in the `[options]` section.
+* Read `pacman.conf(5)` or look in the default `pacman.conf` for information on
+  what can be done here.
+
+==== 2.1.6 Skip files from being installed to system
+
+* To always skip installation of specific files or directories list them under
+  `NoExtract`.
+* Later rules override previous ones, and you can negate a rule by prepending `!`.
